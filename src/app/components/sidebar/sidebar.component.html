@@ -1,0 +1,182 @@
+<!-- <body class="bg-gray-100 dark:bg-gray-900"> -->
+<aside
+  class="fixed top-0 z-10 ml-[-100%] flex h-screen w-full flex-col justify-between border-r bg-white px-6 pb-3 transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] dark:bg-gray-800 dark:border-gray-700">
+  <div>
+    <div class="-mx-6 px-6 py-4">
+      <a href="#" title="home">
+        <img src="/assets/img/quiz-time-banner.webp" class="w-32" alt="tailus logo" />
+      </a>
+    </div>
+    <ul class="mt-8 space-y-2 tracking-wide">
+      <li>
+        <a href="#" aria-label="dashboard"
+          class="relative flex items-center space-x-4 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400 px-4 py-3 text-white">
+          <svg class="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z"
+              class="dark:fill-slate-600 fill-current text-cyan-400"></path>
+            <path d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z"
+              class="fill-current text-cyan-200 group-hover:text-cyan-300"></path>
+            <path d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z"
+              class="fill-current group-hover:text-sky-300"></path>
+          </svg>
+          <span class="-mr-1 font-medium">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/datatable']"
+          class="group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 dark:text-gray-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path class="fill-current text-gray-300 group-hover:text-cyan-300" fill-rule="evenodd"
+              d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z" clip-rule="evenodd" />
+            <path class="fill-current text-gray-600 group-hover:text-cyan-600 dark:group-hover:text-sky-400"
+              d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z" />
+          </svg>
+          <span class="group-hover:text-gray-700 dark:group-hover:text-gray-50">Subjects</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/chart']"
+          class="group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 dark:text-gray-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path class="fill-current text-gray-600 group-hover:text-cyan-600 dark:group-hover:text-sky-400"
+              fill-rule="evenodd"
+              d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+              clip-rule="evenodd" />
+            <path class="fill-current text-gray-300 group-hover:text-cyan-300"
+              d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
+          </svg>
+          <span class="group-hover:text-gray-700 dark:group-hover:text-gray-50">Reports&Charts</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/questions']"
+          class="group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 dark:text-gray-300">
+          <svg fill="#535050" class="h-4 w-4" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"
+            stroke="#535050">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <title>quora</title>
+              <path
+                d="M18.167 26.807c-1.034 0.29-2.221 0.457-3.447 0.457-7.256 0-13.146-5.848-13.215-13.087l-0-0.007c0.052-7.283 5.967-13.166 13.257-13.166s13.206 5.884 13.257 13.163l0 0.005c0 0.031 0 0.067 0 0.103 0 4.118-1.952 7.78-4.982 10.111l-0.030 0.022c0.955 1.435 1.928 2.392 3.314 2.392 0.012 0 0.025 0 0.039 0 1.161 0 2.11-0.91 2.172-2.055l0-0.006h1.946c0.012 0.141 0.019 0.305 0.019 0.471 0 3.197-2.592 5.789-5.789 5.789-0.065 0-0.13-0.001-0.195-0.003l0.009 0c-2.824-0.018-5.251-1.7-6.35-4.115l-0.018-0.044zM16.922 24.374c-1.038-2.043-2.256-4.108-4.634-4.108-0.014-0-0.030-0-0.046-0-0.461 0-0.901 0.096-1.298 0.27l0.021-0.008-0.807-1.611c1.19-0.948 2.715-1.521 4.375-1.521 0.085 0 0.169 0.002 0.252 0.004l-0.012-0c0.061-0.002 0.132-0.003 0.204-0.003 2.53 0 4.735 1.395 5.887 3.458l0.018 0.034c0.724-1.784 1.144-3.853 1.144-6.020 0-0.245-0.005-0.489-0.016-0.731l0.001 0.034c0-6.976-2.179-10.556-7.275-10.556-5.021 0-7.194 3.58-7.194 10.556 0 6.939 2.173 10.483 7.194 10.483 0.036 0.001 0.078 0.001 0.12 0.001 0.736 0 1.447-0.103 2.121-0.295l-0.054 0.013z">
+              </path>
+            </g>
+          </svg>
+          <span class="group-hover:text-gray-700 dark:group-hover:text-gray-50">Questions</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/answers']"
+          class="group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 dark:text-gray-300">
+          <svg fill="#4d4c4c" class="h-6 w-6" viewBox="-2.4 -2.4 28.80 28.80"
+            xmlns="http://www.w3.org/2000/svg" stroke="#4d4c4c">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M12.081 12.932c-.78 1.611-1.849 3.792-2.379 4.776-.513.896-.94.776-1.278.024-1.172-2.77-3.58-7.625-4.712-10.347-.209-.502-.367-.823-.516-.95-.151-.125-.462-.2-.936-.227-.174-.019-.26-.061-.26-.131v-.379l.043-.038c.771-.004 4.503 0 4.503 0l.042.038v.362c0 .1-.063.147-.188.147l-.47.024c-.403.026-.605.137-.605.365 0 .112.044.275.139.501.902 2.206 4.017 8.772 4.017 8.772l.114.039 2.01-4.012-.402-.89L9.82 8.285s-.265-.545-.357-.727c-.607-1.203-.593-1.265-1.206-1.347-.173-.02-.261-.042-.261-.125v-.39l.05-.037h3.578l.095.03v.376c0 .088-.063.125-.189.125l-.257.039c-.66.051-.551.318-.113 1.186l1.319 2.712 1.465-2.922c.244-.533.194-.668.093-.789-.058-.07-.255-.185-.677-.2l-.168-.018a.191.191 0 0 1-.121-.043.125.125 0 0 1-.056-.107v-.357l.051-.037c1.04-.007 3.371 0 3.371 0l.05.037v.364c0 .101-.05.148-.161.148-.539.024-.652.079-.854.366-.1.154-.313.49-.538.865l-1.919 3.563-.054.112 2.328 4.763.142.041 3.665-8.704c.129-.352.107-.602-.053-.746-.165-.144-.289-.228-.716-.246l-.35-.014a.211.211 0 0 1-.127-.037.128.128 0 0 1-.06-.1v-.361l.049-.038h4.137l.034.038v.364c0 .1-.062.15-.174.15-.541.024-.94.15-1.203.351-.263.213-.465.514-.614.89 0 0-3.371 7.72-4.524 10.289-.438.84-.878.765-1.253-.026-.477-.977-1.478-3.156-2.206-4.761l.045-.03z">
+              </path>
+            </g>
+          </svg>
+          <span class="group-hover:text-gray-700 dark:group-hover:text-white">Answers</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/students']"
+          class="group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 dark:text-gray-300">
+          <svg fill="#1a1919" class="h-5 w-5" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 408.191 408.191" xml:space="preserve"
+            stroke="#1a1919">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <g>
+                <g>
+                  <path
+                    d="M363.663,294.916c0-18.823-13.48-34.545-31.289-38.05v-25.655c0-2.333-1.086-4.534-2.938-5.953 c-1.853-1.42-4.26-1.895-6.514-1.289l-8.355,2.25c-22.41-37.422-57.92-48.108-75.395-51.131v-19.483 c5.289-4.545,10.184-10.16,14.557-16.779c1.775-2.688,3.422-5.512,4.965-8.434c0.021,0.008,0.039,0.017,0.061,0.023 c1.959,0.635,3.953,0.936,5.932,0.936c9.098,0,18.565-6.189,21.023-16.258c5.732-23.485-13.5-28.398-13.83-28.458 c0.689-5.758,1.059-11.639,1.059-17.602C272.938,7.156,233.647,0,204.093,0c-29.551,0-68.838,7.156-68.838,69.035 c0,5.963,0.37,11.844,1.059,17.602c-0.329,0.06-19.763,5.184-13.831,28.461c2.559,10.043,11.927,16.255,21.025,16.255 c1.977,0,3.972-0.302,5.931-0.936c0.021-0.007,0.04-0.016,0.061-0.023c1.543,2.922,3.189,5.746,4.965,8.434 c4.373,6.619,9.267,12.234,14.555,16.779v19.483c-17.476,3.023-52.983,13.713-75.394,51.131l-8.354-2.25 c-2.254-0.604-4.661-0.13-6.513,1.289c-1.853,1.419-2.938,3.62-2.938,5.953v25.654c-17.812,3.504-31.291,19.227-31.291,38.051 c0,18.822,13.479,34.549,31.291,38.053v32.199c0,3.326,2.191,6.256,5.383,7.195l120.7,35.523c0.695,0.204,1.408,0.305,2.117,0.305 c0.025,0,0.052,0,0.077,0c0.718,0.002,1.472-0.093,2.192-0.305l120.701-35.508c3.191-0.94,5.383-3.868,5.383-7.195v-32.215 C350.184,329.465,363.663,313.738,363.663,294.916z M269.264,101.639c2.336,1.52,3.334,5.254,2.176,8.834 c-1.103,3.402-3.871,5.766-6.535,5.869C266.626,111.619,268.085,106.707,269.264,101.639z M136.752,110.474 c-1.158-3.579-0.16-7.313,2.177-8.834c1.18,5.067,2.638,9.979,4.358,14.702C140.625,116.236,137.855,113.875,136.752,110.474z M204.093,15c31.995,0,53.399,9.029,53.825,52.721c-26.49,5.475-50.976,0.613-72.852-14.498 c-12.249-8.462-20.517-18.125-24.52-23.389C169.911,18.174,185.141,15,204.093,15z M166.98,130.559 c-10.785-16.326-16.725-38.175-16.725-61.523c0-9.746,1.02-17.805,2.942-24.455c5.171,5.98,12.778,13.604,22.817,20.618 c13.961,9.756,34.738,19.657,61.55,19.657c6.219,0,12.766-0.541,19.625-1.732c-1.896,17.955-7.396,34.447-15.977,47.436 c-10.152,15.367-23.336,23.83-37.12,23.83C190.312,154.389,177.131,145.926,166.98,130.559z M177.259,189.085 c3.837-0.381,6.76-3.608,6.76-7.464v-16.475c6.406,2.791,13.149,4.242,20.074,4.242c6.927,0,13.671-1.451,20.079-4.243v16.476 c0,3.855,2.924,7.083,6.76,7.464c3.428,0.34,9.418,1.203,16.707,3.348c-3.697,11.395-22.129,20.362-43.542,20.362 c-21.414,0-39.847-8.968-43.544-20.362C167.842,190.288,173.831,189.425,177.259,189.085z M59.529,294.916 c0-10.499,6.836-19.432,16.291-22.58v45.156C66.365,314.345,59.529,305.414,59.529,294.916z M196.52,390.666l-105.7-31.108 v-118.56l105.7,28.468V390.666z M204.096,255.973L108.778,230.3c10.99-16.63,25.02-26.6,37.757-32.561 c6.21,17.444,29.267,30.056,57.563,30.056s51.345-12.613,57.552-30.06c12.738,5.96,26.773,15.931,37.764,32.565L204.096,255.973z M317.374,359.572l-105.701,31.095V269.466l105.701-28.468V359.572z M332.374,317.492v-45.156 c9.453,3.149,16.289,12.081,16.289,22.58C348.663,305.413,341.827,314.344,332.374,317.492z">
+                  </path>
+                </g>
+              </g>
+            </g>
+          </svg>
+          <span class="group-hover:text-gray-700 dark:group-hover:text-white">Students</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="-mx-6 flex items-center justify-between border-t px-6 pt-4 dark:border-gray-700">
+    <button class="group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 dark:text-gray-300">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+      </svg>
+      <span class="group-hover:text-gray-700 dark:group-hover:text-white">Logout</span>
+    </button>
+  </div>
+</aside>
+<div class="ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
+  <div class="sticky top-0 h-16 border-b bg-white dark:bg-gray-800 dark:border-gray-700 lg:py-2.5">
+    <div class="flex items-center justify-between space-x-4 px-6 2xl:container">
+      <h5 hidden class="text-2xl font-medium text-gray-600 lg:block dark:text-white">Dashboard</h5>
+      <button type="button" class="-mr-2 h-16 w-12 border-r lg:hidden dark:border-gray-700 dark:text-gray-300"
+        title="Ouvrir le menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="my-auto h-6 w-6" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      <div class="flex space-x-4">
+        <!--search bar -->
+        <div hidden class="md:block">
+          <div class="relative flex items-center text-gray-400 focus-within:text-cyan-400">
+            <span class="absolute left-4 flex h-6 items-center border-r border-gray-300 pr-3 dark:border-gray-700">
+              <svg xmlns="http://ww50w3.org/2000/svg" class="w-4 fill-current" viewBox="0 0 35.997 36.004">
+                <path id="Icon_awesome-search" data-name="search"
+                  d="M35.508,31.127l-7.01-7.01a1.686,1.686,0,0,0-1.2-.492H26.156a14.618,14.618,0,1,0-2.531,2.531V27.3a1.686,1.686,0,0,0,.492,1.2l7.01,7.01a1.681,1.681,0,0,0,2.384,0l1.99-1.99a1.7,1.7,0,0,0,.007-2.391Zm-20.883-7.5a9,9,0,1,1,9-9A8.995,8.995,0,0,1,14.625,23.625Z">
+                </path>
+              </svg>
+            </span>
+            <input type="search" name="leadingIcon" id="leadingIcon" placeholder="Search here"
+              class="outline-none w-full rounded-xl border border-gray-300 py-2.5 pl-14 pr-4 text-sm text-gray-600 transition focus:border-cyan-300 dark:bg-gray-900 dark:border-gray-700" />
+          </div>
+        </div>
+        <!--/search bar -->
+        <button aria-label="search"
+          class="h-10 w-10 rounded-xl border bg-gray-100 active:bg-gray-200 md:hidden dark:bg-gray-700 dark:border-gray-600 dark:active:bg-gray-800">
+          <svg xmlns="http://ww50w3.org/2000/svg" class="mx-auto w-4 fill-current text-gray-600 dark:text-gray-300"
+            viewBox="0 0 35.997 36.004">
+            <path id="Icon_awesome-search" data-name="search"
+              d="M35.508,31.127l-7.01-7.01a1.686,1.686,0,0,0-1.2-.492H26.156a14.618,14.618,0,1,0-2.531,2.531V27.3a1.686,1.686,0,0,0,.492,1.2l7.01,7.01a1.681,1.681,0,0,0,2.384,0l1.99-1.99a1.7,1.7,0,0,0,.007-2.391Zm-20.883-7.5a9,9,0,1,1,9-9A8.995,8.995,0,0,1,14.625,23.625Z">
+            </path>
+          </svg>
+        </button>
+        <button aria-label="chat"
+          class="h-10 w-10 rounded-xl border bg-gray-100 active:bg-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:active:bg-gray-800">
+          <svg xmlns="http://www.w3.org/2000/svg" class="m-auto h-5 w-5 text-gray-600 dark:text-gray-300" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+          </svg>
+        </button>
+        <button aria-label="notification"
+          class="h-10 w-10 rounded-xl border bg-gray-100 active:bg-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:active:bg-gray-800">
+          <svg xmlns="http://www.w3.org/2000/svg" class="m-auto h-5 w-5 text-gray-600 dark:text-gray-300"
+            viewBox="0 0 20 20" fill="currentColor">
+            <path
+              d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="contenu">
+
+    <router-outlet></router-outlet>
+
+  </div>
+
+</div>
