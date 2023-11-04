@@ -1,0 +1,9 @@
+body {
+    background-image: url('/assets/img/image.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.color_class{
+    background-color: aliceblue;
+}
