@@ -1,0 +1,247 @@
+<div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
+
+  <div class="flex">
+    <button class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg m-4" (click)="showAddForm = true">Ajouter
+      un nouveau </button>
+    <button class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg m-4"
+      (click)="navigateToValidation()">Validation</button>
+    <button class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg m-4"
+      (click)="navigateToQuestionToQuiz()">Question to quiz</button>
+    <button class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg m-4"
+      (click)="navigateToListValidation()">List Validation</button>
+  </div>
+
+
+  <div [class.hidden]="!showQueToQuizPopup" class="popup-form p-4">
+    <h2 class="text-lg font-semibold">{{ operation === 'add' ? 'Ajouter' : 'Modifier' }} une question à un quiz</h2>
+    <form [formGroup]="questionToQuizForm" (ngSubmit)="operation === 'add' ? addQuestionToQuiz() : updateValidation()"
+      class="py-6 px-9">
+
+
+      <div class="mb-5">
+        <label for="question">Question</label>
+        <select formControlName="question_id" id="question" required
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+          <option value="" disabled selected>Sélectionner un subject</option>
+          <option *ngFor="let question of questions" [value]="question.id">{{ question.text }}</option>
+        </select>
+      </div>
+
+      <div class="mb-5">
+        <label for="quiz_id">Quiz</label>
+        <select formControlName="quiz_id" id="quiz_id" required
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+          <option value="" disabled selected>Sélectionner un quiz</option>
+          <option *ngFor="let quiz of quizzes" [value]="quiz.id">{{ quiz.title }}</option>
+        </select>
+      </div>
+
+      <div class="mb-5">
+        <label for="time">Time</label>
+        <input type="text" id="time" formControlName="time" placeholder="time"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+      </div>
+
+      <div class="mb-5 flex space-x-8">
+        <button type="submit"
+          class="hover:shadow-form w-30 rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">{{
+          operation === 'add' ? 'Ajouter' : 'Modifier' }}</button>
+        <button type="button" (click)="cancelAddOrEdit()"
+          class="hover:shadow-form w-30 rounded-md bg-[#9D1818] py-3 px-8 text-center text-base font-semibold text-white outline-none">Annuler</button>
+      </div>
+    </form>
+  </div>
+
+
+
+
+  <div [class.hidden]="!showValidationForm1" class="popup-form p-4">
+    <h2 class="text-lg font-semibold">{{ operation === 'add' ? 'Ajouter' : 'Modifier' }} une validation</h2>
+    <form [formGroup]="validationForm" (ngSubmit)="operation === 'add' ? addValidation() : updateValidation()"
+      class="py-6 px-9">
+
+
+      <div class="mb-5">
+        <label for="question_id">Question</label>
+        <select formControlName="question_id" id="question_id" required
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+          <option value="" disabled selected>Sélectionner un subject</option>
+          <option *ngFor="let question of questions" [value]="question.id">{{ question.text }}</option>
+        </select>
+      </div>
+      <!-- *ngFor="let answer of answersFormArray.controls; let i = index" -->
+      <div class="mb-5">
+        <label for="response_id">Answer</label>
+        <select formControlName="response_id" id="response_id" required
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+          <option value="" disabled selected>Sélectionner une reponse</option>
+          <option *ngFor="let answer of answers" [value]="answer.id">{{ answer.answerText }}</option>
+        </select>
+      </div>
+
+      <div class="mb-5">
+        <label for="points">Points</label>
+        <input type="number" id="points" formControlName="points" placeholder="points" max="4" min="2"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+      </div>
+
+      <!-- <button type="button" (click)="addAnswer()" class="text-blue-500">Add Answer</button> -->
+
+      <div class="mb-5 flex space-x-8">
+        <button type="submit"
+          class="hover:shadow-form w-30 rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">{{
+          operation === 'add' ? 'Ajouter' : 'Modifier' }}</button>
+        <button type="button" (click)="cancelAddOrEdit()"
+          class="hover:shadow-form w-30 rounded-md bg-[#9D1818] py-3 px-8 text-center text-base font-semibold text-white outline-none">Annuler</button>
+      </div>
+    </form>
+  </div>
+
+
+
+
+
+  <div [class.hidden]="!showAddForm" class="popup-form p-4">
+    <h2 class="text-lg font-semibold">{{ operation === 'add' ? 'Ajouter' : 'Modifier' }} une question</h2>
+    <form [formGroup]="questionForm" (ngSubmit)="operation === 'add' ? addQuestion() : updateQuestion()"
+      class="py-6 px-9">
+      <div class="mb-5">
+        <label for="text" class="mb-3 block text-base font-medium text-[#07074D]">
+          Texte
+        </label>
+        <input type="text" name="text" id="text" formControlName="text" placeholder="text" required
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+      </div>
+      <div class="mb-5">
+        <label for="answerNumber">Answer Number</label>
+        <input type="number" id="answerNumber" formControlName="answerNumber" placeholder="answer Number" max="4"
+          min="2"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+      </div>
+      <div class="mb-5">
+        <label for="answerCorrectNumber">Answer Correct Number</label>
+        <input type="number" id="answerCorrectNumber" formControlName="answerCorrectNumber"
+          placeholder="answer Correct Number" max="3" min="1"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+      </div>
+      <div class="mb-5">
+        <label for="type">Type</label>
+        <select formControlName="type" id="type" required
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+          <option value="" disabled selected>Sélectionner un type</option>
+          <option value="single">Single</option>
+          <option value="multiple">Multiple</option>
+          <option value="direct">Direct</option>
+        </select>
+      </div>
+      <div class="mb-5">
+        <label for="scorePoints">Score Points</label>
+        <input type="number" id="scorePoints" formControlName="scorePoints" placeholder="scorePoints"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+      </div>
+
+      <div class="mb-5">
+        <label for="level_id">Levels</label>
+        <select formControlName="level_id" id="level_id" required
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+          <option value="" disabled selected>Sélectionner un niveau</option>
+          <option *ngFor="let level of levels" [value]="level.id">{{ level.description }}</option>
+        </select>
+      </div>
+
+      <div class="mb-5">
+        <label for="subject_id">Subjects</label>
+        <select formControlName="subject_id" id="subject_id" required
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+          <option value="" disabled selected>Sélectionner un subject</option>
+          <option *ngFor="let subject of subjects" [value]="subject.id">{{ subject.title }}</option>
+        </select>
+      </div>
+
+      <div class="mb-5 flex space-x-8">
+        <button type="submit" (click)="updateQuestion()"
+          class="hover:shadow-form w-30 rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">{{
+          operation === 'add' ? 'Ajouter' : 'Modifier' }}</button>
+        <button type="button" (click)="cancelAddOrEdit()"
+          class="hover:shadow-form w-30 rounded-md bg-[#9D1818] py-3 px-8 text-center text-base font-semibold text-white outline-none">Annuler</button>
+      </div>
+    </form>
+  </div>
+  <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
+    <thead class="bg-gray-50">
+      <tr>
+        <th scope="col" class="px-6 py-4 font-medium text-gray-900">ID</th>
+        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Title</th>
+        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Answer Number</th>
+        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Answer Correct Number</th>
+        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Type Question</th>
+        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Score Points</th>
+        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Level</th>
+        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Subject</th>
+        <th scope="col" class="px-6 py-4 font-medium text-gray-900" style="text-align: center;">Action</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+      <tr class="hover:bg-gray-50" *ngFor="let question of questions; let i = index">
+        <td class="px-6 py-4">{{ i + 1 }}</td>
+        <td class="px-6 py-4">{{ question.text }}</td>
+        <td class="px-6 py-4">{{ question.answerNumber }}</td>
+        <td class="px-6 py-4">{{ question.answerCorrectNumber }}</td>
+        <td class="px-6 py-4">{{ question.type }}</td>
+        <td class="px-6 py-4">{{ question.scorePoints }}</td>
+        <td class="px-6 py-4">{{ question.level?.description }}</td>
+        <td class="px-6 py-4">{{ question.subject?.title }}</td>
+
+        <td class="px-6 py-4">
+
+          <div class="flex justify-center gap-4">
+            <a x-data="{ tooltip: 'Delete' }" (click)="deleteQuestion(question.id)">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="h-6 w-6" x-tooltip="tooltip">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+              </svg>
+            </a>
+            <a x-data="{ tooltip: 'Edite' }" (click)="editQuestion(question)">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="h-6 w-6" x-tooltip="tooltip">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+              </svg>
+            </a>
+          </div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <div *ngIf="showValidationPopup" class="popup-overlay">
+    <div class="popup-content">
+      <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
+        <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900">ID</th>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Question</th>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Answers</th>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Points</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+          <tr class="hover:bg-gray-50" *ngFor="let validation of validations; let i = index">
+            <td class="px-6 py-4">{{ i + 1 }}</td>
+            <td class="px-6 py-4">{{ validation.question.text }}</td>
+            <td class="px-6 py-4">{{ validation.answer.answerText }}</td>
+            <td class="px-6 py-4">{{ validation.points }}</td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <button (click)="closeValidationPopup()"
+        class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg mt-4">Fermer</button>
+    </div>
+  </div>
+
+
+</div>
