@@ -1,28 +1,32 @@
 <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
 
-  <button class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg m-4" (click)="showAddForm = true">Ajouter un
-    nouveau</button>
+  <button class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg m-4" (click)="showAddForm = true">Ajouter
+    un nouveau</button>
 
   <div [class.hidden]="!showAddForm" class="popup-form p-4">
     <h2 class="text-lg font-semibold">{{ operation === 'add' ? 'Ajouter' : 'Modifier' }} un niveau</h2>
-    <form [formGroup]="subjectForm" (ngSubmit)="operation === 'add' ? addSubject() : updateSubject()" class="py-6 px-9">
-
+    <form [formGroup]="mediaForm" (ngSubmit)="operation === 'add' ? addMedias() : updateMedias()" class="py-6 px-9">
       <div class="mb-5">
-        <label for="name">name</label>
-        <input type="text" id="name" formControlName="name" placeholder="name subject"
+        <label for="link" class="mb-3 block text-base font-medium text-[#07074D]">
+          Link
+        </label>
+        <input type="text" name="link" id="link" formControlName="link"
+          placeholder="link media" required
           class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
       </div>
       <div class="mb-5">
-        <label for="title">description</label>
-        <input type="text" id="title" formControlName="title" placeholder="title"
+        <label for="type">Type</label>
+        <input type="text" id="type" formControlName="type" placeholder="type"
           class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
       </div>
       <div class="mb-5">
-        <label for="parent_id">Parent</label>
-        <input type="text" id="parent_id" formControlName="parent_id" placeholder="parent"
-          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+        <label for="question_id">Question</label>
+        <select formControlName="question_id" id="question_id" required
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+          <option value="" disabled selected>Sélectionner une question</option>
+          <option *ngFor="let question of questions" [value]="question.id">{{ question.text }}</option>
+        </select>
       </div>
-
       <div class="mb-5 flex space-x-8">
         <button type="submit"
           class="hover:shadow-form w-30 rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">{{
@@ -33,37 +37,26 @@
     </form>
   </div>
 
-
-
-
-
-
   <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
     <thead class="bg-gray-50">
       <tr>
         <th scope="col" class="px-6 py-4 font-medium text-gray-900">ID</th>
-        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Title</th>
-        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Parent Title</th>
-        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Children Title</th>
+        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Link</th>
+        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Type</th>
+        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Question</th>
         <th scope="col" class="px-6 py-4 font-medium text-gray-900" style="text-align: center;">Action</th>
       </tr>
     </thead>
     <tbody class="divide-y divide-gray-100 border-t border-gray-100">
-
-      <tr class="hover:bg-gray-50" *ngFor="let subject of subjects; let i = index">
+      <tr class="hover:bg-gray-50" *ngFor="let media of medias; let i = index">
         <td class="px-6 py-4">{{ i + 1 }}</td>
-        <td class="px-6 py-4">{{ subject.title }}</td>
-        <td class="px-6 py-4">{{ subject.parent?.title }}</td>
-        <td class="px-6 py-4">
-          <div *ngFor="let child of subject.children; let i = index">
-            {{ i + 1 }} : {{ child.title }}
-          </div>
-        </td>
+        <td class="px-6 py-4">{{media.link}}</td>
+        <td class="px-6 py-4">{{ media.type }}</td>
+        <td class="px-6 py-4">{{ media.question?.text }}</td>
 
         <td class="px-6 py-4">
-
           <div class="flex justify-center gap-4">
-            <a x-data="{ tooltip: 'Delete' }">
+            <a x-data="{ tooltip: 'Delete' }" (click)="deleteMedia(media.id)">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="h-6 w-6" x-tooltip="tooltip">
                 <path stroke-linecap="round" stroke-linejoin="round"

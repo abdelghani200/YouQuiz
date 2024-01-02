@@ -1,19 +1,54 @@
 <body class="flex items-center justify-center min-h-screen">
-    <!-- Votre code HTML avec des classes Tailwind CSS -->
     <div class="bg-blue-500 text-white p-6 w-4/6 h-80 rounded-lg shadow-lg color_class">
-        <div class="text-2xl font-semibold text-blue-500 mb-4">Question 1 :</div>
-        <div class="text-gray-600 mb-4">Quelle est la capitale de la France?</div>
+        <ng-container *ngIf="quizDisplayed.length > 0; else noQuestions">
+            <div class="text-2xl font-semibold text-blue-500 mb-4">Question {{ currentQuestionIndex + 1 }} :</div>
+            <div class="text-gray-600 mb-4">{{ quizDisplayed[currentQuestionIndex].question?.text }}</div>
 
-        <div class="grid grid-cols-2 gap-4">
-            <button class="bg-gray-200 text-black py-3 px-4 rounded-lg hover:bg-gray-300">Paris</button>
-            <button class="bg-gray-200 text-black py-3 px-4 rounded-lg hover:bg-gray-300">Londres</button>
-            <button class="bg-gray-200 text-black py-3 px-4 rounded-lg hover:bg-gray-300">Berlin</button>
-            <button class="bg-gray-200 text-black py-3 px-4 rounded-lg hover-bg-gray-300">Madrid</button>
-        </div>
+            <div class="grid grid-cols-2 gap-4">
+                <button *ngFor="let answer of getAnswersForCurrentQuestion()" class="relative py-3 px-4 rounded-lg"
+                    [ngClass]="getColorClass(answer)" (click)="selectAnswer(answer)">
+                    {{ answer.answer.answerText }}
+                    <div *ngIf="selectedAnswer === answer" class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-4 h-4 bg-white rounded-full border border-blue-500"></div>
+                    </div>
+                </button>
+            </div>
 
-        <div class="mt-8">
-            <button class="bg-blue-700 text-white py-3 px-4 rounded-lg hover:bg-blue-800">Suivant</button>
-        </div>
+
+            <div class="mt-8">
+                <button *ngIf="!showResultsPopup && !showResultsButtonVisible()" (click)="nextQuestion()"
+                    class="bg-blue-700 text-white py-3 px-4 rounded-lg hover:bg-blue-800">
+                    Suivant
+                </button>
+            
+                <button *ngIf="!showResultsPopup && showResultsButtonVisible()" (click)="toggleResultsPopup()"
+                    class="bg-green-700 text-white py-3 px-4 rounded-lg hover:bg-blue-800">
+                    Show Results
+                </button>
+            </div>
+            
+
+            <div class="popup-overlay" *ngIf="showResultsPopup">
+                <div class="popup-content kahoot-style">
+                    <div class="text-xl font-semibold text-blue-500 mb-2">Score Total:</div>
+                    <div class="text-gray-600">{{ totalScore }}</div>
+                    <div class="emojis">
+                        <div class="emojis">{{ getEmojisForScore(totalScore) }}</div>
+                    </div>
+                    <div class="kahoot-message">
+                        <p class="text-xl font-semibold text-blue-500 mb-2">Bravo!</p>
+                        <p class="text-xl font-semibold text-blue-500 mb-2">Vous avez terminé le quiz.</p>
+                    </div>
+                    <button (click)="toggleResultsPopup()">Retour à l'accueil</button>
+                </div>
+            </div>
+            
+
+
+
+        </ng-container>
+        <ng-template #noQuestions>
+            <div>No questions available.</div>
+        </ng-template>
     </div>
 </body>
-

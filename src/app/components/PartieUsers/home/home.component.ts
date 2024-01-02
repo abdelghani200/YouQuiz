@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  isTeacher: boolean = false;
+
+  toggleSidebar() {
+    this.isTeacher = !this.isTeacher;
+  }
+
 }
